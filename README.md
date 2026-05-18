@@ -23,12 +23,15 @@ A high-performance, enterprise-grade data table built with Next.js 14, designed 
 ## 🏗️ Architectural Decisions
 
 ### Why `useReducer`?
+
 For a table this complex, standard `useState` fragmentation leads to "state synchronization hell." I implemented a centralized `tableReducer` to handle interlinked actions—like clearing filters affecting pagination, or updating an edit map—ensuring the UI remains the single source of truth.
 
 ### Component Scalability
+
 The components are broken down into small, domain-specific units (`EmployeeRow`, `EmployeeTableCell`, `EmployeeTableHeader`). This not only makes the code readable but also ensures that only the necessary parts of the DOM re-render during edits or sorts.
 
 ### Virtualization & Alignment
+
 One of the hardest parts of virtualized tables is keeping absolute-positioned rows aligned with relative-positioned headers. I solved this by using a shared `COLUMNS` configuration with strict pixel widths and a `table-fixed` layout, providing a rock-solid UI at any scale.
 
 ## 🏃 Getting Started
